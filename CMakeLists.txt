@@ -7,7 +7,7 @@ project(platformio-esp32-esp-idf)
 # is named 'main', so we need to change from the default to 'src'
 set(MEMFAULT_PLATFORM_PORT_COMPONENTS src)
 
-set(MEMFAULT_FIRMWARE_SDK src/third-party/memfault-firmware-sdk)
+set(MEMFAULT_FIRMWARE_SDK src/memfault/memfault-firmware-sdk)
 include(${MEMFAULT_FIRMWARE_SDK}/ports/esp_idf/memfault.cmake)
 
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME}.elf
