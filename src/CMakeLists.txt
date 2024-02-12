@@ -1,19 +1,14 @@
-# This file was automatically generated for projects
-# without default 'CMakeLists.txt' file.
+set(COMPONENT_SRCS
+   cmd_system.c
+   cmd_wifi.c
+   config.c
+   console_example_main.c
+   memfault_platform_device_info.c
+)
 
 FILE(GLOB_RECURSE app_sources ${CMAKE_SOURCE_DIR}/src/*.*)
 set(MEMFAULT_FIRMWARE_SDK memfault/memfault-firmware-sdk)
 
-idf_component_register(
-    SRCS
-    main.c
-    # memfault_platform_port.c
+set(COMPONENT_REQUIRES esp_https_ota app_update)
 
-    INCLUDE_DIRS
-    .
-    ${MEMFAULT_FIRMWARE_SDK}/ports/include
-
-		# if in the future MEMFAULT_ESP_HTTP_CLIENT_ENABLE=1, add the below component
-    REQUIRES
-    esp_https_ota
-)
+register_component()
