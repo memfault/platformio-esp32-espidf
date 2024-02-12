@@ -30,7 +30,9 @@
 static void register_free();
 static void register_heap_dump();
 static void register_restart();
+#if SOC_PM_SUPPORT_EXT1_WAKEUP
 static void register_deep_sleep();
+#endif
 static void register_make();
 #if WITH_TASKS_INFO
 static void register_tasks();
@@ -41,7 +43,9 @@ void register_system()
   register_free();
   register_heap_dump();
   register_restart();
+#if SOC_PM_SUPPORT_EXT1_WAKEUP
   register_deep_sleep();
+#endif
   register_make();
 #if WITH_TASKS_INFO
   register_tasks();
@@ -134,6 +138,8 @@ static void register_tasks()
 
 #endif // WITH_TASKS_INFO
 
+#if SOC_PM_SUPPORT_EXT1_WAKEUP
+
 /** 'deep_sleep' command puts the chip into deep sleep mode */
 
 static struct {
@@ -201,6 +207,8 @@ static void register_deep_sleep()
   };
   ESP_ERROR_CHECK( esp_console_cmd_register(&cmd) );
 }
+
+#endif /* SOC_PM_SUPPORT_EXT1_WAKEUP */
 
 /** This command helps maintain sanity when testing console example from a console */
 
