@@ -1,5 +1,8 @@
 //! @file
 //!
+//! Copyright (c) Memfault, Inc.
+//! See License.txt for details
+//!
 //! Implement app settings helpers
 
 #include "settings.h"
