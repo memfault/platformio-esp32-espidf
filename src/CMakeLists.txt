@@ -2,7 +2,7 @@
 # without default 'CMakeLists.txt' file.
 
 FILE(GLOB_RECURSE app_sources ${CMAKE_SOURCE_DIR}/src/*.*)
-set(MEMFAULT_FIRMWARE_SDK third-party/memfault-firmware-sdk)
+set(MEMFAULT_FIRMWARE_SDK memfault/memfault-firmware-sdk)
 
 idf_component_register(
     SRCS
