@@ -15,6 +15,7 @@
 #include "argtable3/argtable3.h"
 #include "cmd_decl.h"
 #include "driver/uart.h"
+#include "driver/gpio.h"
 #include "esp_console.h"
 #include "esp_log.h"
 #include "esp_system.h"
@@ -31,6 +32,7 @@
 #include "memfault/esp_port/core.h"
 #include "memfault/esp_port/http_client.h"
 #include "memfault/esp_port/version.h"
+#include "memfault/demo/cli.h"
 #include "nvs.h"
 #include "nvs_flash.h"
 #include "settings.h"
@@ -356,6 +358,25 @@ void esp_heap_trace_alloc_hook(void *ptr, size_t size, uint32_t caps) {
 }
 #endif
 
+static void gpio_0_button_isr_handler(void *arg) {
+  (void)arg;
+  printf("Button pressed! Triggering a crash");
+  memfault_demo_cli_cmd_crash(1, NULL);
+}
+
+static void prv_initialize_button_gpio(void) {
+  const gpio_config_t config = {
+    .pin_bit_mask = BIT64(GPIO_NUM_0),
+    .mode = GPIO_MODE_INPUT,
+    .intr_type = GPIO_INTR_NEGEDGE,
+    .pull_down_en = false,
+    .pull_up_en = true,
+  };
+  ESP_ERROR_CHECK(gpio_config(&config));
+  ESP_ERROR_CHECK(gpio_install_isr_service(0));
+  ESP_ERROR_CHECK(gpio_isr_handler_add(GPIO_NUM_0, gpio_0_button_isr_handler, NULL));
+}
+
 // This task started by cpu_start.c::start_cpu0_default().
 void app_main() {
 #if !CONFIG_MEMFAULT_AUTOMATIC_INIT
@@ -376,6 +397,8 @@ void app_main() {
   led_init();
 
   prv_initialize_task_watchdog();
+
+  prv_initialize_button_gpio();
 
   // We need another task to post data since we block waiting for user
   // input in this task.
