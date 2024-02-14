@@ -9,8 +9,3 @@ include(${MEMFAULT_FIRMWARE_SDK}/ports/esp_idf/memfault.cmake)
 cmake_minimum_required(VERSION 3.16.0)
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(platformio-esp32-esp-idf)
-
-add_custom_command(TARGET ${CMAKE_PROJECT_NAME}.elf
-  POST_BUILD
-  COMMAND
-  python ${MEMFAULT_FIRMWARE_SDK}/scripts/fw_build_id.py ${CMAKE_PROJECT_NAME}.elf)
