@@ -1,3 +1,4 @@
 [submodule "src/memfault/memfault-firmware-sdk"]
 	path = src/memfault/memfault-firmware-sdk
 	url = https://github.com/memfault/memfault-firmware-sdk.git
+	branch = 1.6.2+platformio
