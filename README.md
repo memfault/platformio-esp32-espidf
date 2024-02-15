@@ -51,13 +51,13 @@ pio run --target upload --target monitor
 
 4. Join a wifi network
 
-```bash
+```plaintext
 esp32> join <ssid> <password>
 ```
 
 5. Save wifi settings to NVM so it connects automatically on boot
 
-```bash
+```plaintext
 esp32> settings_set "wifi_ssid" "your network name"
 esp32> settings_set "wifi_password" "your-wifi-password"
 ```
