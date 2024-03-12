@@ -44,3 +44,6 @@ CONFIG_MBEDTLS_DYNAMIC_FREE_CA_CERT=y
 
 # Trigger an assert if any malloc fails
 CONFIG_MEMFAULT_ASSERT_ON_ALLOC_FAILURE=y
+
+# Required for arduino
+# CONFIG_FREERTOS_HZ=1000
