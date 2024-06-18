@@ -3,7 +3,7 @@
 # is named 'main', so we need to change from the default to 'src'
 set(MEMFAULT_PLATFORM_PORT_COMPONENTS src)
 
-set(MEMFAULT_FIRMWARE_SDK components/memfault-firmware-sdk)
+set(MEMFAULT_FIRMWARE_SDK third-party/memfault-firmware-sdk)
 include(${MEMFAULT_FIRMWARE_SDK}/ports/esp_idf/memfault.cmake)
 
 cmake_minimum_required(VERSION 3.16.0)
