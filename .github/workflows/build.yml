@@ -23,8 +23,8 @@ jobs:
 
       - name: Install PlatformIO
         run: |
-          pip install platformio==6.1.13
+          pip install platformio==6.1.15
 
       - name: Build
         run: |
-          pio run
+          pio run --verbose
