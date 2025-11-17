@@ -21,7 +21,7 @@ source ~/.platformio/penv/bin/activate
 4. Install Memfault's dependencies
 
 ```bash
-pip install -r src/memfault/memfault-firmware-sdk/requirements.txt
+pip install -r third-party/memfault-firmware-sdk/requirements.txt
 pip install memfault-cli
 ```
 
